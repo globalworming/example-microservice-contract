@@ -14,14 +14,16 @@ class RequestSpecification : UsingMockWebServer() {
 
   @Test
   fun `where we send low risk request to security service`() {
-    Given.returnsOk(securityService)
+    Given.mockWebSeverReturnsOk(securityService)
     Step.requestAdviceForAthena(securityServiceClient)
     Ensure.requestMatchesLowRiskRequest(securityService)
   }
 
   @Test
   fun `where we send high risk request to security service`() {
-    TODO()
+    Given.mockWebSeverReturns2faAdvice(securityService)
+    Step.requestAdviceForRiko(securityServiceClient)
+    Ensure.requestMatchesHighRiskRequest(securityService)
   }
 }
 

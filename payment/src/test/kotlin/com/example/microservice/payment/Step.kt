@@ -10,5 +10,10 @@ class Step {
       return securityServiceClient.requestAdvice(user, value)
     }
 
+    fun requestAdviceForRiko(securityServiceClient: SecurityServiceClient): String? {
+      val user = "riko"
+      val value = 1000000
+      return securityServiceClient.requestAdvice(user, value)
+    }
   }
 }

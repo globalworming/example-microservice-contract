@@ -16,14 +16,16 @@ class ResponseSpecification : UsingMockWebServer() {
 
   @Test
   internal fun `where security service returns OK`() {
-    Given.returnsOk(securityService)
+    Given.mockWebSeverReturnsOk(securityService)
     val response = Step.requestAdviceForAthena(securityServiceClient)
     assertThat(response, `is`("OK"))
   }
 
   @Test
   internal fun `where security service advises 2fa`() {
-    TODO()
+    Given.mockWebSeverReturns2faAdvice(securityService)
+    val response = Step.requestAdviceForRiko(securityServiceClient)
+    assertThat(response, `is`("do 2fa"))
   }
 }
 

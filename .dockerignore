@@ -1,0 +1,6 @@
+# exclude all
+*
+
+# but include
+!/security/**
+!/shop/**

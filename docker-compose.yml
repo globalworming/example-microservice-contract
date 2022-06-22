@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+#  ui:
+#    build: ./shop
+#    ports:
+#      - "8000:8000"
+#    env_file:
+#      - shop/.env
+  security:
+    build: ./security
+    ports:
+      - "8080:8080"
+    env_file:
+      - shop/.env
+  

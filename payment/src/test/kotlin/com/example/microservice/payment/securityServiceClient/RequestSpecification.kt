@@ -1,5 +1,9 @@
-package com.example.microservice.payment
+package com.example.microservice.payment.securityServiceClient
 
+import com.example.microservice.payment.Ensure
+import com.example.microservice.payment.Given
+import com.example.microservice.payment.Step
+import com.example.microservice.payment.UsingMockWebServer
 import com.example.microservice.payment.component.SecurityServiceClient
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

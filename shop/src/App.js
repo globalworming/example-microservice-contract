@@ -1,22 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-import {useState} from "react";
 import axios from "axios";
+import {useState} from "react";
 
 function App() {
 
-  const [user, setUser] = useState('')
-  const [paymentSuccess, setPaymentSuccess] = useState(false)
+  const [paymentSuccess, setPaymentSuccess] = useState(undefined)
   const [message, setMessage] = useState(undefined)
 
-  const handleChange = ev => {
-    ev.preventDefault()
-    setUser(ev.currentTarget.value)
-  }
-
-  const buyCoffee = () => {
+  const sendLowRiskRequest = () => {
     axios
-        .post(`/pay`, {user: user, amount: 5.99})
+        .post(`/pay`, {user: "Athena", amount: 5.99})
         .then((result) => {
           setPaymentSuccess(true)
           setMessage(result.data);
@@ -27,13 +21,10 @@ function App() {
   return (
       <div className="App">
         <header className="App-header">
+          <a href="/">learn react</a>
           <img src={logo} className="App-logo" alt="logo"/>
-          <p>user <input type={"text"} value={user} aria-label="user-name" onChange={handleChange}/></p>
-          <p>
-            <button onClick={buyCoffee} aria-label="buy-coffee">buy coffee</button>
-            <button aria-label="buy-car">buy car</button>
-          </p>
-          { paymentSuccess && <p aria-label="payment-success"><span aria-label="message">{message}</span></p>}
+          <button aria-label="perform low risk request" onClick={sendLowRiskRequest}>low risk request</button>
+          {paymentSuccess && <span aria-label="message">{message}</span>}
         </header>
       </div>
   );

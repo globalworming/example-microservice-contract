@@ -1,4 +1,4 @@
-package com.example.microservice.security
+package com.example.microservice.security.feature
 
 import org.hamcrest.CoreMatchers.*
 import org.hamcrest.MatcherAssert.*
@@ -8,21 +8,15 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.web.server.LocalServerPort
 import org.springframework.test.web.reactive.server.WebTestClient
 
-
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class SecurityApplicationTests {
-
-  @LocalServerPort
-  var port: Int = 0
-
-  @Autowired
-  lateinit var webTestClient: WebTestClient
+class SecurityAdviceTest : WithWebEnvironment() {
 
   @Test
   fun whereWeHandleAthenasRequest() {
-    val responseSpec = sendLowRiskRequest()
-    ensureSucessfulStatus(responseSpec)
-    ensureOkResponse(responseSpec)
+    // TODO? refactor to step libraries or screenplay
+    sendLowRiskRequest().apply {
+      ensureSucessfulStatus(this)
+      ensureOkResponse(this)
+    }
   }
 
   @Test
